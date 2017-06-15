@@ -35,6 +35,7 @@ public class Recv {
             }
         };
 
+        // long connection to listen queue and receive message
         channel.basicConsume(QUEUE_NAME, true, consumer);
     }
 }
