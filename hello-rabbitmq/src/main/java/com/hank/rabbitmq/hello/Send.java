@@ -24,7 +24,7 @@ public class Send {
         // declare queue and publish message
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
         String message = "Hello RabbitMQ!";
-        channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
+        channel.basicPublish("", QUEUE_NAME, null, message.getBytes());    // only one queue, no need exchange
         System.out.println(" [x] sent '" + message + "'");
 
         // close channel and connection

@@ -35,7 +35,7 @@ public class Recv {
             }
         };
 
-        // long connection to listen queue and receive message
+        // autoack = true means rabbitmq server will remove the delivered messages automatically without waiting consumer's acknowledge
         channel.basicConsume(QUEUE_NAME, true, consumer);
     }
 }
