@@ -17,10 +17,14 @@ public class Worker {
         Connection connection = connectionFactory.newConnection();
         final Channel channel = connection.createChannel();
 
-        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+        channel.queueDeclare(QUEUE_NAME, true, false, false, null);
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 
-        //channel.basicQos(1);
+        /**
+         * This tells RabbitMQ not to give more than one message to a worker at a time.
+         * don't dispatch a new message to a worker until it has processed and acknowledged the previous one
+         */
+        channel.basicQos(1);
 
         final Consumer consumer = new DefaultConsumer(channel) {
             @Override

@@ -23,7 +23,12 @@ public class NewTask {
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
 
-        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+        /**
+         * Durable param:
+         * set it true will never lose our queue even if rabbitmq server down
+         * RabbitMQ doesn't allow to redefine an existing queue with different parameters
+         */
+        channel.queueDeclare(QUEUE_NAME, true, false, false, null);
         String message = getMessage(args);
         channel.basicPublish("", QUEUE_NAME, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes("UTF-8"));
         System.out.println(" [x] Sent '" + message + "'");
