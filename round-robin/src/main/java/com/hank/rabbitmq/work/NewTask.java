@@ -6,6 +6,8 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.MessageProperties;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.TimeoutException;
 
 /**
@@ -31,7 +33,8 @@ public class NewTask {
         channel.queueDeclare(QUEUE_NAME, true, false, false, null);
         String message = getMessage(args);
         channel.basicPublish("", QUEUE_NAME, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes("UTF-8"));
-        System.out.println(" [x] Sent '" + message + "'");
+        String currentTime = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(new Date()).toString();
+        System.out.println(" [" + currentTime + "] Sent '" + message + "'");
 
         channel.close();
         connection.close();

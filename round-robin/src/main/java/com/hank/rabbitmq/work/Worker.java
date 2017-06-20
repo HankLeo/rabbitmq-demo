@@ -3,6 +3,8 @@ package com.hank.rabbitmq.work;
 import com.rabbitmq.client.*;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.TimeoutException;
 
 /**
@@ -32,12 +34,14 @@ public class Worker {
                     throws IOException {
                 super.handleDelivery(consumerTag, envelope, properties, body);
                 String message = new String(body,"UTF-8");
-                System.out.println(" [x] Received '" + message + "'");
+                String currentTime = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(new Date()).toString();
+                System.out.println(" [" + currentTime + "] Received '" + message + "'");
 
                 try {
                     doWork(message);
                 } finally {
-                    System.out.println(" [x] Done");
+                    System.out.println(" [" + new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(new Date()).toString()
+                            + "] Done");
                     /**
                      * Message acknowledge after process done.
                      * Using this code we can be sure that even if you kill a worker using CTRL+C

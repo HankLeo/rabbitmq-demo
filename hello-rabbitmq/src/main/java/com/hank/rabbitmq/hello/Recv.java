@@ -23,7 +23,12 @@ public class Recv {
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 
-        // Consumer is a callback in the form of an object that will buffer the messages until we're ready to use them
+        /**
+         * Consumer is a callback in the form of an object that will buffer the messages until we're ready to use them
+         * need override handleDelivery()
+         * message are saved as byte array in variable "body"
+         */
+        //
         Consumer consumer = new DefaultConsumer(channel) {
             // the method to handle received messages
             @Override
