@@ -34,6 +34,10 @@ public class EmitLog {
 
         String message = getMessage(args);
 
+        /**
+         * publish to exchange
+         * don't care which queue 
+         */
         channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes());
 
         String currentTime = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(new Date()).toString();
