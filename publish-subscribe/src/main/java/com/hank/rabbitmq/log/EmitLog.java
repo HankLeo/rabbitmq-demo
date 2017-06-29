@@ -24,7 +24,6 @@ public class EmitLog {
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
 
-        // declare an exchange for producer
         /**
          * declare an exchange for producer
          * exchange type = fanout

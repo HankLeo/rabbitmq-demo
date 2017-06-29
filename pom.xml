@@ -12,6 +12,7 @@
         <module>hello-rabbitmq</module>
         <module>round-robin</module>
         <module>publish-subscribe</module>
+        <module>routing</module>
     </modules>
 
     <dependencyManagement>
