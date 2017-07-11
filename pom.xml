@@ -13,6 +13,7 @@
         <module>round-robin</module>
         <module>publish-subscribe</module>
         <module>routing</module>
+        <module>topic-exchange</module>
     </modules>
 
     <dependencyManagement>
