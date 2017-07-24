@@ -32,6 +32,9 @@ public class NewTask {
          */
         channel.queueDeclare(QUEUE_NAME, true, false, false, null);
         String message = getMessage(args);
+        /**
+         * deliveryMode: Marks a message as persistent (with a value of 2) or transient (any other value).
+         */
         channel.basicPublish("", QUEUE_NAME, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes("UTF-8"));
         String currentTime = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(new Date()).toString();
         System.out.println(" [" + currentTime + "] Sent '" + message + "'");

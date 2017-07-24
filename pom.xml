@@ -14,6 +14,7 @@
         <module>publish-subscribe</module>
         <module>routing</module>
         <module>topic-exchange</module>
+        <module>rpc</module>
     </modules>
 
     <dependencyManagement>
